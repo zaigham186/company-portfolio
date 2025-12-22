@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>team</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      .page-header {
+            background: linear-gradient(rgba(26, 58, 95, 0.9), rgba(26, 58, 95, 0.9)), url('https://images.unsplash.com/photo-1589391886645-d51941baf7fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+ .team-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1a3a5f;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #d4af37;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .member-image {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .team-member:hover .member-image img {
+            transform: scale(1.05);
+        }
+        
+        .member-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .member-name {
+            font-size: 1.4rem;
+            color: #1a3a5f;
+            margin-bottom: 0.5rem;
+        }
+        
+        .member-title {
+            color: #d4af37;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .member-bio {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .member-contact {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .member-contact a {
+            color: #1a3a5f;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .member-contact a:hover {
+            color: #d4af37;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="left">
+      <span>📞 Make A Call:  03005900934</span>
+      <span>✉️ Email: qureshiabdullah212@gmail.com</span>
+    </div>
+    <div class="right">
+      Follow me:
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header>
+    <a href="index.html" class="logo">⚖️ <span>law forum</span></a>
+    <nav>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="practice-area.html">Practice Area</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="contact.html#quote-form" class="cta-btn">Free Consultation</a>
+  </header>
+ <section class="page-header">
+        <h1>Our Legal Team</h1>
+        <p>Meet our experienced team of legal professionals dedicated to providing exceptional legal services with integrity, expertise, and commitment to our clients' success.</p>
+    </section>
+    <section class="team-section">
+        <h2 class="section-title">Partners</h2>
+        <div class="team-grid">
+            <!-- Team Member 1 -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="advocate.jpg" alt="Muhammad Hassan Qureshi">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Muhammad Haseeb Qureshi</h3>
+                    <p class="member-title">Senior Partner</p>
+                    <p class="member-bio">With over 20 years of experience in corporate law, Mr. Qureshi specializes in commercial litigation and arbitration.</p>
+                    <div class="member-contact">
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="hoja.jpg" alt="Ayesha Malik">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Farooq Ali</h3>
+                    <p class="member-title">Partner</p>
+                    <p class="member-bio">Ms. Malik leads our family law practice with expertise in divorce, child custody, and matrimonial disputes.</p>
+                    <div class="member-contact">
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Associates</h2>
+        <div class="team-grid">
+            <!-- Team Member 3 -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Ahmed Raza">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Ahmed Raza</h3>
+                    <p class="member-title">Senior Associate</p>
+                    <p class="member-bio">Ahmed specializes in intellectual property law and has successfully represented clients in trademark and copyright cases.</p>
+                    <div class="member-contact">
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 4 -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fatima Zahid">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Fatima Zahid</h3>
+                    <p class="member-title">Associate</p>
+                    <p class="member-bio">Fatima focuses on real estate law and property transactions, providing diligent representation for her clients.</p>
+                    <div class="member-contact">
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 5 -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Bilal Siddiqui">
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Bilal Siddiqui</h3>
+                    <p class="member-title">Associate</p>
+                    <p class="member-bio">Bilal practices criminal defense law and has a strong track record of achieving favorable outcomes for his clients.</p>
+                    <div class="member-contact">
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+      <div class="foot">
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="logo">Caspian</div>
+        <ul class="footer-nav">
+          <li><a href="about.html">About</a></li>
+          <li><a href="practice-area.html">Practice Area</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="social-section">
+          <p>Follow me:</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="copyright">
+          <p>2021 @ Legal. All Right Reserved.</p>
+        </div>
+        <div class="legal-links">
+          <a href="#">Terms & conditions</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

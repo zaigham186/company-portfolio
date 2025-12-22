@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lawyer Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome CDN -->
+ 
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Georgia', serif; color: #fff; overflow-x: hidden; }
+
+    /* Top Bar */
+    .top-bar {
+      background: #06111c;
+      color: #fff;
+      font-size: 0.9rem;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s;
+    }
+    .top-bar .left span { margin-right: 30px; }
+    .top-bar .right a {
+      margin-left: 25px;
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .top-bar .right a:hover { color: #f4c542; }
+
+    /* Navbar */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: #0d1b2a;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+    header .logo { font-size: 1.5rem; font-weight: bold; display: flex; align-items: center; }
+    header .logo span { margin-left: 10px; transition: color 0.3s; }
+    nav ul { list-style: none; display: flex; }
+    nav ul li { margin: 0 15px; }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover { color: #f4c542; }
+    .cta-btn {
+      border: 1px solid #f4c542;
+      padding: 10px 18px;
+      color: #f4c542;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    .cta-btn:hover { background: #f4c542; color: #0d1b2a; }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 80px 40px;
+      background: #0d1b2a;
+      flex-wrap: wrap;
+      animation: fadeIn 1s ease-in;
+    }
+    .hero-text {
+      flex: 1;
+      padding-right: 40px;
+    }
+    .hero-text h4 {
+      color: #f4c542;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      animation: slideInLeft 1s ease-out;
+    }
+    .hero-text h1 {
+      font-size: 2.8rem;
+      line-height: 1.3;
+      margin-bottom: 20px;
+      animation: slideInLeft 1.2s ease-out;
+    }
+    .hero-text p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      color: #ddd;
+      animation: fadeIn 1.4s ease-out;
+    }
+    .hero-buttons a {
+      display: inline-block;
+      padding: 12px 25px;
+      margin-right: 15px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    .btn-main { background: #f4c542; color: #0d1b2a; }
+    .btn-main:hover { background: #fff; }
+    .btn-secondary { background: transparent; border: 1px solid #f4c542; color: #f4c542; }
+    .btn-secondary:hover { background: #f4c542; color: #0d1b2a; }
+
+    .hero-image {
+      flex: 1;
+      text-align: center;
+    }
+    .hero-image img {
+      width: 500px;
+      height: 450px;
+      border-radius: 10px;
+      animation: zoomIn 1s ease-out;
+    }
+
+    /* Stats Section */
+    .stats-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: white;
+      
+      animation: fadeInUp 1s ease-out;
+    }
+    .stat-item {
+      text-align: center;
+      flex: 1;
+      color: #c89b5f;
+      transition: transform 0.3s;
+    }
+    .stat-item:hover { transform: scale(1.1); }
+    .stat-number { font-size: 48px; font-weight: bold; margin: 0; }
+    .stat-text { font-size: 16px; margin-top: 5px; }
+
+    /* About Section */
+    .super {
+      background-color: #f8f8f8;
+      padding: 40px 0;
+      animation: fadeIn 1s ease-out;
+    }
+    .about-container {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      max-width: 1200px;
+      margin: 20px auto;
+      position: relative;
+      
+      flex-wrap: wrap;
+    }
+    .left-section {
+      flex: 1;
+      position: relative;
+      min-height: 400px;
+      background-image: url('https://via.placeholder.com/450x400?text=Lawyer+Image');
+      background-size: cover;
+      background-position: center;
+    }
+    .leaf-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 200px;
+      background: url('https://via.placeholder.com/100x200?text=Leaf+Overlay');
+      opacity: 0.2;
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: fadeIn 1.5s ease-out;
+    }
+    .right-section {
+      flex: 1;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #fff;
+    }
+    .logo { font-size: 24px; color: #c89b5f; margin-bottom: 10px; }
+    .subtitle { font-size: 18px; color: #333; margin-bottom: 10px; }
+    .title { font-size: 36px; font-weight: bold; color: #000; margin-bottom: 20px; }
+    .description { font-size: 16px; color: #555; line-height: 1.6; margin-bottom: 20px; }
+    .consultation-link { color: #c89b5f; text-decoration: none; display: inline-flex; align-items: center; margin-bottom: 10px; }
+    .consultation-link::before { content: '○'; margin-right: 5px; color: #c89b5f; }
+    .appointment-button {
+      background-color: #c89b5f;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      width: fit-content;
+      transition: background 0.3s;
+    }
+    .appointment-button:hover { background: #f4c542; }
+
+    /* Features Section */
+    .google {
+      background-color: #ddd;
+      color: #2c3e50;
+      line-height: 1.6;
+      padding: 40px 20px;
+      animation: fadeIn 1s ease-out;
+    }
+    .container1 { max-width: 1200px; margin: 0 auto; }
+    .features { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+    .feature-box {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      padding: 30px;
+      width: 350px;
+      transition: all 0.3s ease;
+      animation: fadeInUp 1s ease-out;
+    }
+    .feature-box:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12); }
+    .feature-icon { font-size: 2.5rem; color: #3498db; margin-bottom: 20px; }
+    .feature-title { font-size: 1.5rem; margin-bottom: 15px; color: #2c3e50; font-weight: 600; }
+    .feature-text { color: #555; line-height: 1.7; margin-bottom: 10px; }
+    .stats-highlight {
+      background-color: #c89b5f;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: 600;
+      margin-top: 15px;
+      font-size: 0.9rem;
+    }
+
+    /* Expertise Section */
+    .android {
+      background-color: #f8f9fa;
+      color: #2c3e50;
+      line-height: 1.6;
+      padding: 60px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      animation: fadeIn 1s ease-out;
+    }
+    .container2 {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      padding: 50px;
+      animation: fadeInUp 1s ease-out;
+    }
+    .header { text-align: center; margin-bottom: 40px; }
+    .main-title { font-size: 2.5rem; color: #2c3e50; margin-bottom: 15px; font-weight: 700; }
+    .subtitle { font-size: 1.2rem; color: #3498db; margin-bottom: 20px; font-weight: 500; }
+    .description { color: #7f8c8d; max-width: 600px; margin: 0 auto; line-height: 1.7; }
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .expertise-item {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 25px;
+      transition: all 0.3s ease;
+      border-left: 4px solid #3498db;
+    }
+    .expertise-item:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); background: white; }
+    .expertise-title { font-size: 1.4rem; color: #2c3e50; margin-bottom: 15px; font-weight: 600; }
+    .expertise-desc { color: #7f8c8d; line-height: 1.6; }
+
+    /* Testimonial Section */
+    .testimonial-section {
+      text-align: center;
+      padding: 60px 80px;
+      background-color: #fff;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1s ease-out;
+    }
+    .testimonial-section::before,
+    .testimonial-section::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.1;
+      background-size: contain;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+    .testimonial-section::before {
+      left: 0;
+      width: 200px;
+      height: 400px;
+      background-image: url("https://cdn-icons-png.flaticon.com/512/4766/4766921.png");
+    }
+    .testimonial-section::after {
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background-image: url("https://cdn-icons-png.flaticon.com/512/4767/4767070.png");
+    }
+    .section-subtitle {
+      font-size: 16px;
+      color: #c19a6b;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .section-title { font-size: 32px; font-weight: bold; margin-bottom: 40px; color: #333; position: relative; z-index: 1; }
+    .testimonials { display: flex; justify-content: space-between; gap: 30px; position: relative; z-index: 1; }
+    .testimonial {
+      flex: 1;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+      text-align: left;
+      transition: transform 0.3s;
+    }
+    .testimonial:hover { transform: translateY(-10px); }
+    .testimonial i { font-size: 30px; color: #c19a6b; margin-bottom: 15px; }
+    .testimonial p { font-size: 15px; line-height: 1.6; color: #444; margin-bottom: 20px; }
+    .testimonial h4 { font-size: 18px; margin-bottom: 5px; color: #000; }
+    .testimonial span { font-size: 14px; color: #555; }
+
+    /* Logo Section */
+    .logo-section {
+      background-color: #1a2333;
+      padding: 40px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 80px;
+      animation: fadeIn 1s ease-out;
+    }
+    .logo-section img {
+      width: 100px;
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+    }
+    .logo-section img:hover { opacity: 1; }
+
+    /* News Section */
+    .over {
+      background-color: #f8f9fa;
+      color: #2c3e50;
+      line-height: 1.6;
+      padding: 60px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      animation: fadeIn 1s ease-out;
+    }
+    .container3 {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      padding: 50px;
+      animation: fadeInUp 1s ease-out;
+    }
+    .section-title { font-size: 1.8rem; color: #7f8c8d; margin-bottom: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; }
+    .main-title { font-size: 2.5rem; color: #2c3e50; margin-bottom: 15px; font-weight: 700; }
+    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+    .news-card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid #eee;
+    }
+    .news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
+    .news-image { width: 100%; height: 180px; object-fit: cover; }
+    .news-date { background: #3498db; color: white; padding: 12px 15px; font-size: 0.9rem; font-weight: 500; }
+    .news-content { padding: 20px; }
+    .news-title { font-size: 1.3rem; color: #2c3e50; margin-bottom: 15px; font-weight: 600; line-height: 1.4; }
+    .read-more {
+      display: inline-block;
+      color: #3498db;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 15px;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+    .read-more:hover { color: #2980b9; text-decoration: underline; }
+    .read-more i { margin-left: 5px; font-size: 0.8rem; }
+
+    /* Contact Section */
+    .later {
+      background-color: #f8f9fa;
+      color: #2c3e50;
+      line-height: 1.6;
+      padding: 60px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      animation: fadeIn 1s ease-out;
+    }
+    .container {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      max-width: 1100px;
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      padding: 50px;
+      animation: fadeInUp 1s ease-out;
+    }
+    .left-column, .right-column { flex: 1; min-width: 300px; }
+    .section-title { font-size: 2.2rem; color: #2c3e50; margin-bottom: 20px; font-weight: 700; line-height: 1.3; }
+    .description { color: #7f8c8d; margin-bottom: 30px; }
+    .contact-info .info-item { display: flex; align-items: flex-start; margin-bottom: 20px; }
+    .info-icon {
+      width: 45px;
+      height: 45px;
+      background: #3498db;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+    .info-icon i { color: white; font-size: 1rem; }
+    .info-title { font-weight: 600; color: #2c3e50; margin-bottom: 5px; }
+    .info-detail { color: #7f8c8d; font-size: 0.95rem; }
+    .quote-form {
+      background: #f9fafc;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+    }
+    .form-title { font-size: 1.5rem; color: #2c3e50; font-weight: 600; text-align: center; margin-bottom: 25px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: #2c3e50; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: #3498db;
+      outline: none;
+      box-shadow: 0 0 6px rgba(52,152,219,0.3);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .submit-btn {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 15px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .submit-btn:hover { background: #2980b9; }
+
+    /* Footer */
+    .foot { background-color: #2c3e50; color: white; min-height: 40vh; }
+    .footer {
+      width: 100%;
+      background: #2c3e50;
+      padding: 55px 30px;
+      animation: fadeIn 1s ease-out;
+    }
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 15px;
+    }
+    .logo { font-size: 2rem; font-weight: 700; color: white; }
+    .footer-nav { list-style: none; display: flex; gap: 25px; }
+    .footer-nav li a { color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s; font-size: 1.1rem; }
+    .footer-nav li a:hover { color: white; }
+    .social-section { display: flex; align-items: center; gap: 15px; }
+    .social-section p { margin-right: 10px; color: rgba(255,255,255,0.8); }
+    .social-icons { display: flex; gap: 12px; }
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #f4c542; /* Gold color for icons */
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .social-icons a i { font-size: 1rem; }
+    .social-icons a:hover { background: rgba(255, 255, 255, 0.3); }
+    .footer-bottom {
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .copyright { color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; }
+    .legal-links { display: flex; gap: 20px; }
+    .legal-links a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color 0.3s; font-size: 0.9rem; }
+    .legal-links a:hover { color: white; }
+
+    /* Animations */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideInLeft { from { opacity: 0; transform: translateX(-100px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes zoomIn { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .top-bar { flex-direction: column; text-align: center; }
+      .top-bar .left span { margin: 5px 0; }
+      .top-bar .right { margin-top: 10px; }
+      header { flex-direction: column; padding: 20px; }
+      nav ul { flex-direction: column; margin-top: 10px; }
+      nav ul li { margin: 10px 0; }
+      .hero { padding: 40px 20px; }
+      .hero-text { padding: 0; margin-bottom: 20px; }
+      .hero-image img { width: 100%; height: auto; }
+      .stats-container { flex-direction: column; padding: 20px 10px; }
+      .stat-item { margin: 10px 0; }
+      .about-container { flex-direction: column; }
+      .left-section { min-height: 300px; }
+      .features { flex-direction: column; align-items: center; }
+      .feature-box { width: 100%; max-width: 350px; }
+      .expertise-grid { grid-template-columns: 1fr; }
+      .testimonials { flex-direction: column; }
+      .testimonial { width: 100%; margin: 20px 0; }
+      .logo-section { flex-wrap: wrap; gap: 40px; }
+      .logo-section img { width: 80px; }
+      .news-grid { grid-template-columns: 1fr; }
+      .container { flex-direction: column; padding: 30px 20px; }
+      .section-title { font-size: 1.8rem; }
+      .footer-top { flex-direction: column; text-align: center; }
+      .social-section { margin-top: 10px; }
+    }
+
+    @media (min-width: 769px) and (max-width: 992px) {
+      header { padding: 20px 30px; }
+      .hero { padding: 60px 30px; }
+      .hero-image img { width: 400px; height: auto; }
+      .stats-container { padding: 20px; }
+      .about-container { flex-direction: column; }
+      .left-section { min-height: 350px; }
+      .features { gap: 20px; }
+      .feature-box { width: 45%; }
+      .expertise-grid { grid-template-columns: 1fr; }
+      .news-grid { grid-template-columns: repeat(2, 1fr); }
+      .container { gap: 20px; }
+      .footer-top { gap: 20px; }
+    }
+
+    @media (min-width: 993px) {
+      .hero-image img { width: 500px; height: 450px; }
+      .news-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="left">
+      <span>📞 Make A Call: +923329588027</span>
+      <span>✉️ Email: Qureshi@gmail.com</span>
+    </div>
+    <div class="right">
+      Follow me:
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header>
+    <div class="logo">⚖️ <span>Caspian</span></div>
+    <nav>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Practice Area</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="#" class="cta-btn">Free Consultation</a>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h4>Caspian Belvedere</h4>
+      <h1>Top Rated Attorney in NewYork Providing Intellectual Property & Business Law Solution</h1>
+      <p>Expert legal services with years of experience in intellectual property, corporate law, and litigation.</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn-main">Book an Appointment</a>
+        <a href="#" class="btn-secondary">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="hero-image.jpg" alt="Lawyer Image">
+    </div>
+  </section>
+
+  <div class="stats-container">
+    <div class="stat-item">
+      <p class="stat-number">25</p>
+      <p class="stat-text">years experience</p>
+    </div>
+    <div class="stat-item">
+      <p class="stat-number">400+</p>
+      <p class="stat-text">Happy Clients</p>
+    </div>
+    <div class="stat-item">
+      <p class="stat-number">11</p>
+      <p class="stat-text">Awards</p>
+    </div>
+    <div class="stat-item">
+      <p class="stat-number">$3.21B</p>
+      <p class="stat-text">won cases</p>
+    </div>
+  </div>
+
+  <div class="super">
+    <div class="about-container">
+      <div class="left-section">
+        <img src="hero-image.jpg" alt="Lawyer Imag" width="500px" height="500px">
+        <div class="leaf-overlay"></div>
+      </div>
+      <div class="right-section">
+        <div class="logo">⚖️ ───</div>
+        <div class="subtitle">About me - Muhammad Zaigham</div>
+        <div class="title">25 years of experience with 400+ solved cases</div>
+        <p class="description">
+          Aliquam diam, quisque diam integer in ipsum amet. Enim nisl, egest nunc pellentesque sapien, ultricies consequat ut. Enim amet in nulla venenatis nisl fringilla ac. Semper pellentesque risus pharetra eu vitae enim gravida. Egestas non amet, mauris, ac gravida sed. Purus in leo sed metus, nunc purus
+        </p>
+        <a href="#" class="consultation-link">Get 30 mins free consultation</a>
+        <button class="appointment-button">Book an Appointment</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="google">
+    <div class="container1">
+      <div class="features">
+        <div class="feature-box">
+          <div class="feature-icon"><i class="fas fa-scale-balanced"></i></div>
+          <h3 class="feature-title">Skilled Attorneys</h3>
+          <p class="feature-text">Feugiat in a, diam ullamcorper.</p>
+          <p class="feature-text">Ut placerat donec elit tristique ut suscipit at eu. Vitae massa at mattis rhoncus tincidunt. Felis sit egestas in elit sit amet, elit elementum sit. Posuere feugiat id sollicitudin sit</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3 class="feature-title">Legal Defense</h3>
+          <p class="feature-text">Feugiat in a, diam ullamcorper.</p>
+          <p class="feature-text">Ut placerat donec elit tristique ut suscipit at eu. Vitae massa at mattis rhoncus tincidunt. Felis sit egestas in elit sit amet, elit elementum sit. Posuere feugiat id sollicitudin sit</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon"><i class="fas fa-trophy"></i></div>
+          <h3 class="feature-title">90% Cases Won</h3>
+          <p class="feature-text">Feugiat in a, diam ullamcorper.</p>
+          <p class="feature-text">Ut placerat donec elit tristique ut suscipit at eu. Vitae massa at mattis rhoncus tincidunt. Felis sit egestas in elit sit amet, elit elementum sit. Posuere feugiat id sollicitudin sit</p>
+          <div class="stats-highlight">90% Success Rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="android">
+    <div class="container2">
+      <div class="header">
+        <h1 class="main-title">My Expertise</h1>
+        <h2 class="subtitle">Practice Areas I Cover</h2>
+        <p class="description">Aliquam diam, quisque diam integer in ipsum amet. Enim nisl, eget runo pellentesque sapien. ultrices consequat ut.</p>
+      </div>
+      <div class="expertise-grid">
+        <div class="expertise-item">
+          <h3 class="expertise-title">Family Law</h3>
+          <p class="expertise-desc">Maceenas tempus, tellus eget condimentum rhoncus</p>
+        </div>
+        <div class="expertise-item">
+          <h3 class="expertise-title">Personal Injury</h3>
+          <p class="expertise-desc">Maceenas tempus, tellus eget condimentum rhoncus</p>
+        </div>
+        <div class="expertise-item">
+          <h3 class="expertise-title">Criminal Law</h3>
+          <p class="expertise-desc">Maceenas tempus, tellus eget condimentum rhoncus</p>
+        </div>
+        <div class="expertise-item">
+          <h3 class="expertise-title">Education Law</h3>
+          <p class="expertise-desc">Maceenas tempus, tellus eget condimentum rhoncus</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="testimonial-section">
+    <div class="section-subtitle"><i class="fas fa-gavel"></i> Testimonial</div>
+    <h2 class="section-title">Hear From Our Clients</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <i class="fas fa-quote-left"></i>
+        <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nuncIt showed a lady fitted out</p>
+        <h4>John Harris</h4>
+        <span>NewYork</span>
+      </div>
+      <div class="testimonial">
+        <i class="fas fa-quote-left"></i>
+        <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nuncIt showed a lady fitted out</p>
+        <h4>John Harris</h4>
+        <span>NewYork</span>
+      </div>
+      <div class="testimonial">
+        <i class="fas fa-quote-left"></i>
+        <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nuncIt showed a lady fitted out</p>
+        <h4>John Harris</h4>
+        <span>NewYork</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="logo-section">
+    <img src="federal-shariat-court-of-pakistan.jpg" alt="Law Logo 1">
+    <img src="law.jpg" alt="Law Logo 2">
+    <img src="kyhber.jpg" alt="Law Logo 3">
+    <img src="pakistan.jpg" alt="Law Logo 4">
+    <img src="easy.jpg" alt="Law Logo 5">
+  </section>
+
+  <div class="over">
+    <div class="container3">
+      <div class="header">
+        <div class="section-title">News</div>
+        <h2 class="main-title">Latest News</h2>
+      </div>
+      <div class="news-grid">
+        <div class="news-card">
+          <img src="hero-image.jpg" alt="News Image 1" class="news-image">
+          <div class="news-date">15 December 2022</div>
+          <div class="news-content">
+            <h3 class="news-title">Outside Equity Investments in Law Firms Are The Future</h3>
+            <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="news-card">
+          <img src="banner-image.jpg" alt="News Image 2" class="news-image">
+          <div class="news-date">12 April 2023</div>
+          <div class="news-content">
+            <h3 class="news-title">A Recession Will Push More Lawyers Back to the Office</h3>
+            <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="news-card">
+          <img src="365525101.jpg" alt="News Image 3" class="news-image">
+          <div class="news-date">15 December 2024</div>
+          <div class="news-content">
+            <h3 class="news-title">How I Made It to Law Firm Leadership</h3>
+            <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="later">
+    <div class="container">
+      <div class="left-column">
+        <h2 class="section-title">Request A Quote For<br>Free Consultancy</h2>
+        <p class="description">Tempus, tellus agiri concilmentum rhoncus, sem quam sempar libero, sit amet adipiscing sem neque sed ipsum. Nam quam nuncit showed a lady fitted out.</p>
+        <div class="contact-info">
+          <div class="info-item">
+            <div class="info-icon"><i class="fas fa-phone"></i></div>
+            <div class="info-content">
+              <div class="info-title">Phone:</div>
+              <div class="info-detail">+29 0928 3928</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+            <div class="info-content">
+              <div class="info-title">Email:</div>
+              <div class="info-detail">templele@dorh.com</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="info-content">
+              <div class="info-title">Address:</div>
+              <div class="info-detail">40 Park Ave, Brooklyn, New York</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fas fa-clock"></i></div>
+            <div class="info-content">
+              <div class="info-title">Open Hour:</div>
+              <div class="info-detail">Mon-Fri: 9:00–17:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-column">
+        <div class="quote-form">
+          <h3 class="form-title">Get Free Consultation</h3>
+          <form>
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" placeholder="Your full name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="Your email address">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="Your phone number">
+            </div>
+            <div class="form-group">
+              <label for="service">Service Needed</label>
+              <select id="service">
+                <option value="">Select a service</option>
+                <option value="family-law">Family Law</option>
+                <option value="personal-injury">Personal Injury</option>
+                <option value="criminal-law">Criminal Law</option>
+                <option value="education-law">Education Law</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Tell us about your case"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Request</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="logo">Caspian</div>
+        <ul class="footer-nav">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Practice Area</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="social-section">
+          <p>Follow me:</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="copyright">
+          <p>2021 @ Legal. All Right Reserved.</p>
+        </div>
+        <div class="legal-links">
+          <a href="#">Terms & conditions</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  
+</body>
+</html>
