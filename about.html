@@ -1,95 +1,264 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About me</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+  <title>About | Muhammad Habib Qureshi</title>
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#D4AF37',
+              dark: '#B5952F',
+              light: '#3D3210',
+              lighter: '#1F1908',
+            },
+            secondary: {
+              DEFAULT: '#0b0d12',
+              light: '#1c2230',
+            },
+            text: {
+              dark: '#f0f0f0',
+              gray: '#a0aec0',
+              light: '#718096',
+            },
+            bg: {
+              main: '#13161F',
+              light: '#161a25',
+              section: '#0f1219',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          boxShadow: {
+            'soft': '0 10px 40px rgba(0, 0, 0, 0.5)',
+            'gleam': '0 0 15px rgba(212, 175, 55, 0.3)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: all 0.6s ease;
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: all 0.6s ease;
+    }
+
+    .revealed {
+      opacity: 1;
+      transform: translate(0);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+  </style>
 </head>
-<body>
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="left">
-      <span>📞 Make A Call:  03005900934</span>
-      <span>✉️ Email: qureshiabdullah212@gmail.com</span>
-    </div>
-    <div class="right">
-      Follow me:
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="#"><i class="fab fa-linkedin-in"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-    </div>
-  </div>
+
+<body class="font-sans text-text-dark bg-bg-main antialiased overflow-x-hidden leading-relaxed">
 
   <!-- Navbar -->
-  <header>
-    <a href="index.html" class="logo">⚖️ <span>Law forum</span></a>
-    <nav>
-      <ul>
-        <li><a href="about.html">About</a></li>
-        <li><a href="practice-area.html">Practice Area</a></li>
-        <li><a href="news.html">News</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="contact.html">Contact</a></li>
+  <header class="bg-bg-main sticky top-0 z-50 shadow-md transition-all duration-300 py-4" id="navbar">
+    <div class="container mx-auto px-5 flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2.5 text-xl font-bold text-gray-100">
+        <i class="fas fa-scale-balanced text-primary text-2xl"></i>
+        <span>Qureshi Law Associates</span>
+      </a>
+      <nav class="hidden md:block">
+        <ul class="flex gap-8">
+          <li><a href="about.html" class="text-primary font-medium transition-colors">About</a></li>
+          <li><a href="practice-areas.html"
+              class="text-gray-200 font-medium hover:text-primary transition-colors">Practice Areas</a></li>
+          <li><a href="highlights.html"
+              class="text-gray-200 font-medium hover:text-primary transition-colors">Highlights</a></li>
+          <li><a href="news.html" class="text-gray-200 font-medium hover:text-primary transition-colors">Engagements</a>
+          </li>
+          <li><a href="why-us.html" class="text-gray-200 font-medium hover:text-primary transition-colors">Why Us</a>
+          </li>
+          <li><a href="contact.html" class="text-gray-200 font-medium hover:text-primary transition-colors">Contact</a>
+          </li>
+        </ul>
+      </nav>
+      <a href="contact.html"
+        class="hidden md:inline-block bg-primary text-white px-5 py-2.5 rounded-lg font-medium hover:bg-primary-dark transition-all shadow-lg hover:shadow-gleam">Free
+        Consultation</a>
+      <button class="md:hidden flex flex-col gap-1.5 p-1 border-none bg-transparent cursor-pointer" id="mobileMenuBtn">
+        <span class="w-6 h-0.5 bg-gray-200 rounded-sm transition-all duration-300"></span>
+        <span class="w-6 h-0.5 bg-gray-200 rounded-sm transition-all duration-300"></span>
+        <span class="w-6 h-0.5 bg-gray-200 rounded-sm transition-all duration-300"></span>
+      </button>
+    </div>
+    <nav class="md:hidden absolute top-full left-0 w-full bg-bg-main shadow-xl hidden flex-col border-t border-gray-800"
+      id="mobileNavList">
+      <ul class="flex flex-col p-5 gap-4">
+        <li><a href="about.html" class="block text-primary py-2 border-b border-gray-800">About</a></li>
+        <li><a href="practice-areas.html"
+            class="block text-gray-200 hover:text-primary py-2 border-b border-gray-800">Practice Areas</a></li>
+        <li><a href="highlights.html"
+            class="block text-gray-200 hover:text-primary py-2 border-b border-gray-800">Highlights</a></li>
+        <li><a href="news.html"
+            class="block text-gray-200 hover:text-primary py-2 border-b border-gray-800">Engagements</a></li>
+        <li><a href="why-us.html" class="block text-gray-200 hover:text-primary py-2 border-b border-gray-800">Why
+            Us</a></li>
+        <li><a href="contact.html" class="block text-gray-200 hover:text-primary py-2">Contact</a></li>
       </ul>
     </nav>
-    <a href="contact.html#quote-form" class="cta-btn">Free Consultation</a>
   </header>
 
-  <!-- About Section -->
-  <div class="super">
-    <div class="about-container">
-      <div class="left-section">
-        <img src="about.jpg" alt="Lawyer Image" width="500px" height="500px">
-        <div class="leaf-overlay"></div>
-      </div>
-      <div class="right-section">
-        <div class="logo">⚖️ ───</div>
-        <div class="subtitle">About me - MH Qureshi</div>
-        <div class="title">30+ years of experience with 100+ solved cases</div>
-        <p class="description">
-          M.H. Qureshi Law Associates, under the leadership of Supreme Court Advocate Muhammad Habib Qureshi, offers distinguished legal representation built upon over 29 years of extensive experience since his initial enrolment in 1994. Mr. Qureshi's esteemed career is marked by significant international engagement, including addressing the House of Lords in the UK and participating in conferences by the American Bar Association in the United States, complemented by specialized certifications in National Security from Pakistan's National Defense University and in Extradition and Mutual Legal Assistance from the U.S. Department of Justice. Our firm, located at Office No. 50, 2nd Floor, Liberty Mall, University Road, Peshawar, is committed to providing sophisticated legal solutions that leverage this unique blend of deep local expertise and a global perspective for every client.
-        </p>
-        <a href="contact.html#quote-form" class="consultation-link">Get 30 mins free consultation</a>
-        <button class="appointment-button" a href="contact.html#quote-form" class="btn-main">Book an Appointment</button>
-      </div>
+  <!-- Page Header -->
+  <section class="relative py-20 bg-gradient-to-br from-secondary to-secondary-light overflow-hidden">
+    <div class="container mx-auto px-5 relative z-10 text-center">
+      <h1 class="text-white text-4xl sm:text-5xl font-bold mb-4 animate-fade-in-up">Professional Profile</h1>
+      <p class="text-primary font-medium tracking-wide uppercase">Muhammad Habib Qureshi | Advocate Supreme Court</p>
     </div>
-  </div>
+    <div class="absolute inset-0 bg-primary opacity-5 blur-3xl rounded-full translate-y-1/2"></div>
+  </section>
+
+  <main>
+    <section class="about py-24 bg-bg-light">
+      <div class="container mx-auto px-5 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal-left">
+          <img src="lahore.jpg" alt="Muhammad Habib Qureshi"
+            class="w-full max-w-md mx-auto rounded-2xl shadow-lg border border-gray-800 hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="reveal-right">
+          <h2 class="text-3xl font-bold text-white mb-6">Distinguished Legal Career</h2>
+          <p class="text-text-gray mb-4">Muhammad Habib Qureshi brings over 31 years of extensive experience in
+            litigation, consultancy, and judicial roles. He has served as a Judge (Chairman) of the Drug Court & Banking
+            Court, KP (BPS-21) and as Deputy Attorney General for Pakistan.</p>
+          <p class="text-text-gray mb-8">Enrolled with the Supreme Court of Pakistan since 2009, he has handled over
+            5,000 cases in the High Court and approximately 400 cases before the Supreme Court. He represents numerous
+            government and semi-government departments including the Ministry of Law, FBR, WAPDA, and SNGPL.</p>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center gap-3 text-text-dark"><i class="fas fa-gavel text-primary w-6 text-center"></i>
+              Elected Vice President, SCBA</li>
+            <li class="flex items-center gap-3 text-text-dark"><i
+                class="fas fa-university text-primary w-6 text-center"></i> Certificate in Shariah (IIU)</li>
+            <li class="flex items-center gap-3 text-text-dark"><i
+                class="fas fa-shield-alt text-primary w-6 text-center"></i> National Security Workshop (NDU)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
-  <div class="foot">
-    <footer class="footer">
-      <div class="footer-top">
-        <div class="logo">Caspian</div>
-        <ul class="footer-nav">
-          <li><a href="about.html">About</a></li>
-          <li><a href="practice-area.html">Practice Area</a></li>
-          <li><a href="news.html">News</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="social-section">
-          <p>Follow me:</p>
-          <div class="social-icons">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+  <footer class="bg-secondary text-white pt-16 pb-8 border-t border-white/5">
+    <div class="container mx-auto px-5">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-white/10">
+        <div class="footer-brand">
+          <a href="index.html" class="flex items-center gap-2.5 text-xl font-bold text-white mb-4">
+            <i class="fas fa-scale-balanced text-primary"></i>
+            <span>Qureshi Law Associates</span>
+          </a>
+          <p class="text-gray-400 text-sm leading-relaxed">Legal excellence with a legacy of 31+ years.
+            Committed to justice and serving clients at the highest forums in Pakistan.</p>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-white mb-6">Quick Links</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#about" class="text-gray-400 hover:text-primary text-sm transition-colors">About
+                Profile</a></li>
+            <li><a href="#expertise" class="text-gray-400 hover:text-primary text-sm transition-colors">Practice
+                Areas</a>
+            </li>
+            <li><a href="#news" class="text-gray-400 hover:text-primary text-sm transition-colors">Global
+                Engagements</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-primary text-sm transition-colors">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-white mb-6">Key Areas</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#expertise" class="text-gray-400 hover:text-primary text-sm transition-colors">Corporate
+                Law</a>
+            </li>
+            <li><a href="#expertise" class="text-gray-400 hover:text-primary text-sm transition-colors">Drug
+                Court Cases</a></li>
+            <li><a href="#expertise" class="text-gray-400 hover:text-primary text-sm transition-colors">Supreme Court
+                Appeals</a></li>
+            <li><a href="#expertise" class="text-gray-400 hover:text-primary text-sm transition-colors">Tax
+                & Banking</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold text-white mb-6">Contact Us</h4>
+          <p class="text-gray-400 text-sm mb-2"><i class="fas fa-phone text-primary mr-2"></i> +92-300-5900934
+          </p>
+          <p class="text-gray-400 text-sm"><i class="fas fa-envelope text-primary mr-2"></i>
+            habib.advocate76@yahoo.com</p>
+          <div class="flex gap-3 mt-4">
+            <a href="#"
+              class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all"><i
+                class="fab fa-twitter"></i></a>
+            <a href="#"
+              class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all"><i
+                class="fab fa-facebook-f"></i></a>
+            <a href="#"
+              class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all"><i
+                class="fab fa-linkedin-in"></i></a>
           </div>
         </div>
       </div>
-      <div class="footer-bottom">
-        <div class="copyright">
-          <p>2021 @ Legal. All Right Reserved.</p>
-        </div>
-        <div class="legal-links">
-          <a href="#">Terms & conditions</a>
-          <a href="#">Privacy Policy</a>
+      <div class="text-center md:flex md:justify-between md:items-center pt-8 text-gray-500 text-sm">
+        <p>&copy; 2024 Muhammad Habib Qureshi. All Rights Reserved.</p>
+        <div class="flex gap-6 justify-center mt-4 md:mt-0">
+          <a href="#" class="hover:text-primary transition-colors">Terms & Conditions</a>
+          <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
         </div>
       </div>
-    </footer>
-  </div>
-
+    </div>
+  </footer>
   <script src="script.js"></script>
+  <script>
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNavList');
+    if (mobileBtn && mobileNav) {
+      mobileNav.classList.add('hidden');
+      mobileBtn.addEventListener('click', () => {
+        mobileNav.classList.toggle('hidden');
+        mobileNav.classList.toggle('flex');
+      });
+    }
+  </script>
 </body>
+
 </html>

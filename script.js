@@ -10,17 +10,19 @@ const statNumbers = document.querySelectorAll('.stat-number');
 // ==================== //
 // Mobile Menu Toggle
 // ==================== //
-mobileMenuBtn.addEventListener('click', () => {
-    mobileMenuBtn.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
-// Close mobile menu when clicking a link
-navMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenuBtn.classList.remove('active');
-        navMenu.classList.remove('active');
+if (mobileMenuBtn && navMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.classList.toggle('active');
+        navMenu.classList.toggle('active');
     });
-});
+    // Close mobile menu when clicking a link
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenuBtn.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+}
 // ==================== //
 // Navbar Scroll Effect
 // ==================== //
@@ -74,7 +76,7 @@ function handleStatsAnimation() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 statNumbers.forEach(stat => {
-                    const target = parseInt(stat.closest('.stat-item').dataset.count);
+                    const target = parseInt(stat.dataset.count);
                     animateCounter(stat, target);
                 });
                 observer.unobserve(entry.target);
@@ -106,35 +108,60 @@ function handleRevealAnimations() {
 // ==================== //
 // Contact Form Handling
 // ==================== //
-contactForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    // Get form values
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const service = document.getElementById('service').value;
-    const message = document.getElementById('message').value.trim();
-    // Basic validation
-    if (!name || !email || !service || !message) {
-        showFormMessage('Please fill in all required fields.', 'error');
-        return;
-    }
-    if (!isValidEmail(email)) {
-        showFormMessage('Please enter a valid email address.', 'error');
-        return;
-    }
-    // Simulate form submission
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
-    setTimeout(() => {
-        showFormMessage('Thank you! Your message has been sent successfully. We will contact you soon.', 'success');
-        contactForm.reset();
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    }, 1500);
-});
+if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        // Get form values
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const service = document.getElementById('service').value;
+        const message = document.getElementById('message').value.trim();
+        // Basic validation
+        if (!name || !email || !service || !message) {
+            showFormMessage('Please fill in all required fields.', 'error');
+            return;
+        }
+        if (!isValidEmail(email)) {
+            showFormMessage('Please enter a valid email address.', 'error');
+            return;
+        }
+        // Formspree AJAX Submission
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        const formData = new FormData(contactForm);
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    showFormMessage('Thank you! Your message has been sent successfully. We will contact you soon.', 'success');
+                    contactForm.reset();
+                } else {
+                    return response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            showFormMessage(data["errors"].map(error => error["message"]).join(", "), 'error');
+                        } else {
+                            showFormMessage('Oops! There was a problem submitting your form.', 'error');
+                        }
+                    });
+                }
+            })
+            .catch(error => {
+                showFormMessage('Oops! There was a problem submitting your form.', 'error');
+            })
+            .finally(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+    });
+}
 function isValidEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
