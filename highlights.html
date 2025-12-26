@@ -5,27 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Highlights | Muhammad Habib Qureshi</title>
-    <!-- FontAwesome -->
+    <!-- Link CSS Libraries -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Animation Libraries -->
+    <!-- Animation Libraries Removed -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         primary: {
-                            DEFAULT: '#D4AF37',
+                            DEFAULT: '#D4AF37', /* Golden */
                             dark: '#B5952F',
                             light: '#3D3210',
                             lighter: '#1F1908',
                         },
                         secondary: {
-                            DEFAULT: '#0b0d12',
+                            DEFAULT: '#0b0d12', /* Darker Header/Footer */
                             light: '#1c2230',
                         },
                         text: {
@@ -40,7 +44,8 @@
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
                     },
                     boxShadow: {
                         'soft': '0 10px 40px rgba(0, 0, 0, 0.5)',
@@ -51,82 +56,92 @@
         }
     </script>
     <style>
-        .reveal-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+        :root {
+            --primary: #D4AF37;
         }
 
-        .reveal-left {
-            opacity: 0;
-            transform: translateX(-30px);
-            transition: all 0.6s ease;
+        .font-serif {
+            font-family: 'Playfair Display', serif;
         }
 
-        .reveal-right {
-            opacity: 0;
-            transform: translateX(30px);
-            transition: all 0.6s ease;
+        /* Glassmorphism Refinements */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .revealed {
-            opacity: 1;
-            transform: translate(0);
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.1);
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
+        /* Gradient Background for Sections */
+        .bg-mesh {
+            background-color: #13161F;
+            background-image:
+                radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(30, 58, 138, 0.05) 0px, transparent 50%);
         }
     </style>
 </head>
 
 <body class="font-sans text-text-dark bg-bg-main antialiased overflow-x-hidden leading-relaxed">
+    <!-- Custom Cursor Removed -->
 
     <!-- Navbar -->
     <header class="bg-bg-main sticky top-0 z-50 shadow-md transition-all duration-300 py-4" id="navbar">
         <div class="container mx-auto px-5 flex justify-between items-center">
             <a href="index.html" class="flex items-center gap-2.5 text-xl font-bold text-gray-100">
                 <i class="fas fa-scale-balanced text-primary text-2xl"></i>
-                <span>Qureshi Law Associates</span>
+                <span class="font-serif hidden sm:inline">MH Qureshi law Firm</span>
+                <span class="font-serif sm:hidden">MHQLF</span>
             </a>
-            <nav class="hidden md:block">
+            <!-- Desktop Nav -->
+            <nav class="hidden md:block" id="navMenu">
                 <ul class="flex gap-8">
                     <li><a href="about.html"
-                            class="text-gray-200 font-medium hover:text-primary transition-colors">About</a></li>
-                    <li><a href="practice-areas.html"
-                            class="text-gray-200 font-medium hover:text-primary transition-colors">Practice Areas</a>
+                            class="text-gray-200 font-medium hover:text-primary relative group transition-colors">About<span
+                                class="absolute bottom-[-5px] left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></a>
                     </li>
-                    <li><a href="highlights.html" class="text-primary font-medium transition-colors">Highlights</a></li>
+                    <li><a href="practice-areas.html"
+                            class="text-gray-200 font-medium hover:text-primary relative group transition-colors">Practice
+                            Areas<span
+                                class="absolute bottom-[-5px] left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></a>
+                    </li>
+                    <li><a href="highlights.html"
+                            class="text-primary font-medium hover:text-primary relative group transition-colors">Highlights<span
+                                class="absolute bottom-[-5px] left-0 w-full h-0.5 bg-primary transition-all duration-300"></span></a>
+                    </li>
                     <li><a href="news.html"
-                            class="text-gray-200 font-medium hover:text-primary transition-colors">Engagements</a></li>
-                    <li><a href="why-us.html" class="text-gray-200 font-medium hover:text-primary transition-colors">Why
-                            Us</a></li>
+                            class="text-gray-200 font-medium hover:text-primary relative group transition-colors">Engagements<span
+                                class="absolute bottom-[-5px] left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></a>
+                    </li>
+                    <li><a href="why-us.html"
+                            class="text-gray-200 font-medium hover:text-primary relative group transition-colors">Why
+                            Us<span
+                                class="absolute bottom-[-5px] left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></a>
+                    </li>
                     <li><a href="contact.html"
-                            class="text-gray-200 font-medium hover:text-primary transition-colors">Contact</a></li>
+                            class="text-gray-200 font-medium hover:text-primary relative group transition-colors">Contact<span
+                                class="absolute bottom-[-5px] left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></a>
+                    </li>
                 </ul>
             </nav>
             <a href="contact.html"
-                class="hidden md:inline-block bg-primary text-white px-5 py-2.5 rounded-lg font-medium hover:bg-primary-dark transition-all shadow-lg hover:shadow-gleam">Free
+                class="hidden md:inline-block bg-primary text-white px-5 py-2.5 rounded-lg font-medium hover:bg-primary-dark hover:-translate-y-0.5 transition-all shadow-lg hover:shadow-gleam">Free
                 Consultation</a>
+            <!-- Mobile Menu Button -->
             <button class="md:hidden flex flex-col gap-1.5 p-1 border-none bg-transparent cursor-pointer"
-                id="mobileMenuBtn">
-                <span class="w-6 h-0.5 bg-gray-200 rounded-sm transition-all duration-300"></span>
-                <span class="w-6 h-0.5 bg-gray-200 rounded-sm transition-all duration-300"></span>
-                <span class="w-6 h-0.5 bg-gray-200 rounded-sm transition-all duration-300"></span>
+                id="mobileMenuBtn" aria-label="Toggle Menu">
+                <span class="w-6 h-0.5 bg-gray-200 rounded-sm transition-all duration-300 origin-center"></span>
+                <span class="w-6 h-0.5 bg-gray-200 rounded-sm transition-all duration-300 origin-center"></span>
+                <span class="w-6 h-0.5 bg-gray-200 rounded-sm transition-all duration-300 origin-center"></span>
             </button>
         </div>
+        <!-- Mobile Nav Menu -->
         <nav class="md:hidden absolute top-full left-0 w-full bg-bg-main shadow-xl hidden flex-col border-t border-gray-800"
             id="mobileNavList">
             <ul class="flex flex-col p-5 gap-4">
@@ -147,50 +162,227 @@
         </nav>
     </header>
 
-    <!-- Page Header -->
-    <section class="relative py-20 bg-gradient-to-br from-secondary to-secondary-light overflow-hidden">
-        <div class="container mx-auto px-5 relative z-10 text-center">
-            <h1 class="text-white text-4xl sm:text-5xl font-bold mb-4 animate-fade-in-up">Career Highlights</h1>
-            <p class="text-primary font-medium tracking-wide uppercase">Leadership & Recognition</p>
-        </div>
-        <div class="absolute inset-0 bg-primary opacity-5 blur-3xl rounded-full translate-y-1/2"></div>
-    </section>
+    
 
-    <main>
-        <section class="py-24 bg-bg-main" id="history">
-            <div class="container mx-auto px-5">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section class="py-24 bg-bg-main overflow-hidden" id="history">
+        <div class="container mx-auto px-5">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal-up">
+                <p class="text-primary font-semibold uppercase tracking-widest text-sm mb-3">Leadership & Recognition
+                </p>
+                <h2 class="text-4xl font-serif font-bold text-white mb-6">Bar Leadership Roles</h2>
+                <p class="text-text-gray">Distinguished service across major bar associations and legal councils,
+                    demonstrating commitment to the legal profession.</p>
+                </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div
+                    class="glass-card p-6 rounded-xl border-l-4 border-primary hover:-translate-y-2 transition-transform duration-300">
                     <div
-                        class="bg-bg-section p-8 rounded-xl text-center border border-transparent hover:border-primary/50 hover:-translate-y-2 transition-all duration-300 reveal-up">
-                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-users-cog text-2xl text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Vice President</h3>
-                        <p class="text-text-gray text-sm leading-relaxed">Elected Vice President of the Supreme Court
-                            Bar Association, representing the legal fraternity at the highest level.</p>
+                        class="w-full aspect-[4/3] bg-primary/10 rounded-lg overflow-hidden border border-white/10 mb-6">
+                        <img src="What-Does-The-American-Bar-Association-Do.jpg" alt="Vice President Role" class="w-full h-full object-cover">
                     </div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <i class="fas fa-users-cog text-primary text-xl"></i>
+                        <h3 class="text-xl font-serif font-bold text-white">Vice President</h3>
+                    </div>
+                    <p class="text-text-gray text-sm leading-relaxed">Elected Vice President of the Supreme Court Bar
+                        Association, representing the legal fraternity at the highest level.</p>
+                </div>
+
+                <div
+                    class="glass-card p-6 rounded-xl border-l-4 border-primary hover:-translate-y-2 transition-transform duration-300">
                     <div
-                        class="bg-bg-section p-8 rounded-xl text-center border border-transparent hover:border-primary/50 hover:-translate-y-2 transition-all duration-300 reveal-up">
-                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-user-tie text-2xl text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Executive Member</h3>
-                        <p class="text-text-gray text-sm leading-relaxed">Served multiple terms as Elected Member
-                            Executive of the Supreme Court Bar Association.</p>
+                        class="w-full aspect-[4/3] bg-primary/10 rounded-lg overflow-hidden border border-white/10 mb-6">
+                        <img src="chup ho.jpg" alt="Executive Member Role" class="w-full h-full object-cover">
                     </div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <i class="fas fa-user-tie text-primary text-xl"></i>
+                        <h3 class="text-xl font-serif font-bold text-white">Executive Member</h3>
+                    </div>
+                    <p class="text-text-gray text-sm leading-relaxed">Served multiple terms as Elected Member Executive
+                        of the Supreme Court Bar Association.</p>
+                </div>
+
+                <div
+                    class="glass-card p-6 rounded-xl border-l-4 border-primary hover:-translate-y-2 transition-transform duration-300">
                     <div
-                        class="bg-bg-section p-8 rounded-xl text-center border border-transparent hover:border-primary/50 hover:-translate-y-2 transition-all duration-300 reveal-up">
-                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-landmark text-2xl text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Bar Council</h3>
-                        <p class="text-text-gray text-sm leading-relaxed">Elected Member of the KP Bar Council
-                            (2009–2014) and Secretary of PHC Bar Association (2005).</p>
+                        class="w-full aspect-[4/3] bg-primary/10 rounded-lg overflow-hidden border border-white/10 mb-6">
+                        <img src="lord of uk.jpg" alt="Bar Council Role" class="w-full h-full object-cover">
                     </div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <i class="fas fa-landmark text-primary text-xl"></i>
+                        <h3 class="text-xl font-serif font-bold text-white">Bar Council</h3>
+                    </div>
+                    <p class="text-text-gray text-sm leading-relaxed">Elected Member of the KP Bar Council (2009–2014)
+                        and Secretary of PHC Bar Association (2005).</p>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+<!-- Reported Cases Section -->
+<section class="py-24 bg-bg-main overflow-hidden" id="reported-cases">
+    <div class="container mx-auto px-5">
+
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <p class="text-primary font-semibold uppercase tracking-widest text-sm mb-3">
+                Judicial Record
+            </p>
+            <h2 class="text-4xl font-serif font-bold text-white mb-6">
+                Reported Cases & Landmark Judgments
+            </h2>
+            <p class="text-text-gray">
+                23 reported cases before the Supreme Court of Pakistan and Peshawar High Court,
+                published in leading law journals including PLD, SCMR, PTD, MLD and PCRLJ.
+            </p>
+        </div>
+
+        <!-- Summary Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            <div class="glass-card p-6 rounded-xl text-center">
+                <h3 class="text-3xl font-bold text-primary">23</h3>
+                <p class="text-text-gray text-sm">Reported Cases</p>
+            </div>
+            <div class="glass-card p-6 rounded-xl text-center">
+                <h3 class="text-3xl font-bold text-primary">10+</h3>
+                <p class="text-text-gray text-sm">Supreme Court</p>
+            </div>
+            <div class="glass-card p-6 rounded-xl text-center">
+                <h3 class="text-3xl font-bold text-primary">13+</h3>
+                <p class="text-text-gray text-sm">High Court</p>
+            </div>
+            <div class="glass-card p-6 rounded-xl text-center">
+                <h3 class="text-3xl font-bold text-primary">31+</h3>
+                <p class="text-text-gray text-sm">Years Practice</p>
+            </div>
+        </div>
+
+        <!-- Cases Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- CASE 1 -->
+            <div class="glass-card p-6 rounded-xl border-l-4 border-primary">
+                <h3 class="text-lg font-serif font-bold text-white">PLD 2024 SC 780</h3>
+                <p class="text-text-gray text-sm mt-2">
+                    Hafsa Habib Qureshi & others vs Amir Hamza
+                </p>
+                <p class="text-sm mt-3">
+                    <span class="text-primary font-semibold">Court:</span> Supreme Court<br>
+                    <span class="text-primary font-semibold">Role:</span> Petitioner<br>
+                    <span class="text-primary font-semibold">Decision:</span> Disposed Off
+                </p>
+            </div>
+
+            <!-- CASE 2 -->
+            <div class="glass-card p-6 rounded-xl border-l-4 border-primary">
+                <h3 class="text-lg font-serif font-bold text-white">2020 SCMR 500</h3>
+                <p class="text-text-gray text-sm mt-2">
+                    CIT vs Messrs ED. Zublin
+                </p>
+                <p class="text-sm mt-3">
+                    <span class="text-primary font-semibold">Court:</span> Supreme Court<br>
+                    <span class="text-primary font-semibold">Role:</span> Appellant<br>
+                    <span class="text-primary font-semibold">Decision:</span> Allowed
+                </p>
+            </div>
+
+            <!-- CASE 3 -->
+            <div class="glass-card p-6 rounded-xl border-l-4 border-primary">
+                <h3 class="text-lg font-serif font-bold text-white">2019 SCMR 57</h3>
+                <p class="text-text-gray text-sm mt-2">
+                    Agro Tractors (Pvt.) Ltd. vs Fecto Belarus Tractors Ltd.
+                </p>
+                <p class="text-sm mt-3">
+                    <span class="text-primary font-semibold">Court:</span> Supreme Court<br>
+                    <span class="text-primary font-semibold">Role:</span> Respondent<br>
+                    <span class="text-primary font-semibold">Decision:</span> Dismissed
+                </p>
+            </div>
+
+            <!-- CASE 4 -->
+            <div class="glass-card p-6 rounded-xl border-l-4 border-primary">
+                <h3 class="text-lg font-serif font-bold text-white">2018 SCMR 1126</h3>
+                <p class="text-text-gray text-sm mt-2">
+                    Income Tax Officer vs Akbar Gul
+                </p>
+                <p class="text-sm mt-3">
+                    <span class="text-primary font-semibold">Court:</span> Supreme Court<br>
+                    <span class="text-primary font-semibold">Role:</span> Appellant<br>
+                    <span class="text-primary font-semibold">Decision:</span> Allowed
+                </p>
+            </div>
+
+            <!-- CASE 5 -->
+            <div class="glass-card p-6 rounded-xl border-l-4 border-primary">
+                <h3 class="text-lg font-serif font-bold text-white">2018 SCMR 1319</h3>
+                <p class="text-text-gray text-sm mt-2">
+                    Civic Centres Co. (Pvt.) Ltd. vs Commissioner Income Tax
+                </p>
+                <p class="text-sm mt-3">
+                    <span class="text-primary font-semibold">Court:</span> Supreme Court<br>
+                    <span class="text-primary font-semibold">Role:</span> Respondent<br>
+                    <span class="text-primary font-semibold">Decision:</span> Allowed
+                </p>
+            </div>
+
+            <!-- CASE 6 -->
+            <div class="glass-card p-6 rounded-xl border-l-4 border-primary">
+                <h3 class="text-lg font-serif font-bold text-white">2017 SCMR 585</h3>
+                <p class="text-text-gray text-sm mt-2">
+                    Collector of Customs, Peshawar vs Wali Khan
+                </p>
+                <p class="text-sm mt-3">
+                    <span class="text-primary font-semibold">Court:</span> Supreme Court<br>
+                    <span class="text-primary font-semibold">Role:</span> Appellant<br>
+                    <span class="text-primary font-semibold">Decision:</span> Allowed
+                </p>
+            </div>
+
+            <!-- CASE 7 -->
+            <div class="glass-card p-6 rounded-xl border-l-4 border-primary">
+                <h3 class="text-lg font-serif font-bold text-white">PLD 2005 Peshawar 112</h3>
+                <p class="text-text-gray text-sm mt-2">
+                    Mst. Parveen vs Government of N-W.F.P
+                </p>
+                <p class="text-sm mt-3">
+                    <span class="text-primary font-semibold">Court:</span> Peshawar High Court<br>
+                    <span class="text-primary font-semibold">Role:</span> Petitioner<br>
+                    <span class="text-primary font-semibold">Decision:</span> Allowed
+                </p>
+            </div>
+
+            <!-- CASE 8 -->
+            <div class="glass-card p-6 rounded-xl border-l-4 border-primary">
+                <h3 class="text-lg font-serif font-bold text-white">2003 PCRLJ 528</h3>
+                <p class="text-text-gray text-sm mt-2">
+                    Sher Ahmad vs Jan Faqir
+                </p>
+                <p class="text-sm mt-3">
+                    <span class="text-primary font-semibold">Court:</span> Peshawar High Court<br>
+                    <span class="text-primary font-semibold">Role:</span> Respondent<br>
+                    <span class="text-primary font-semibold">Decision:</span> Bail Refused
+                </p>
+            </div>
+
+            <!-- CASE 9 -->
+            <div class="glass-card p-6 rounded-xl border-l-4 border-primary">
+                <h3 class="text-lg font-serif font-bold text-white">2018 MLD 1571</h3>
+                <p class="text-text-gray text-sm mt-2">
+                    Nisabullah alias Gulap vs Awal Haq Khan
+                </p>
+                <p class="text-sm mt-3">
+                    <span class="text-primary font-semibold">Court:</span> Peshawar High Court<br>
+                    <span class="text-primary font-semibold">Role:</span> Petitioner<br>
+                    <span class="text-primary font-semibold">Decision:</span> Dismissed
+                </p>
+            </div>
+
+            <!-- YOU CAN CONTINUE ADDING REMAINING CASES USING SAME STRUCTURE -->
+
+        </div>
+    </div>
+</section>
+
 
     <!-- Footer -->
     <footer class="bg-secondary text-white pt-16 pb-8 border-t border-white/5">
@@ -262,17 +454,6 @@
         </div>
     </footer>
     <script src="script.js"></script>
-    <script>
-        const mobileBtn = document.getElementById('mobileMenuBtn');
-        const mobileNav = document.getElementById('mobileNavList');
-        if (mobileBtn && mobileNav) {
-            mobileNav.classList.add('hidden');
-            mobileBtn.addEventListener('click', () => {
-                mobileNav.classList.toggle('hidden');
-                mobileNav.classList.toggle('flex');
-            });
-        }
-    </script>
 </body>
 
 </html>
